@@ -1,23 +1,44 @@
-create database ddl1;
-use ddl1;
-create table trg_dept(
-id int(7),
-name varchar(25));
-create table tar_emp(
-id int(7),
-last_name varchar(25),
-first_name varchar(25),
-dept_id int(7));
-alter table tar_emp modify column last_name varchar(100);
-create table trg_employees(
-employee_id int(7),
-first_name varchar(25),
-last_name varchar(25),
-salary int(7),
-dept_id int(5)
+create database CMS71545;
+use CMS71545;
+
+create table CustomerM(
+cust_id varchar(5) not null,
+cust_name varchar(25) not null,
+user_name varchar(15) not null,
+pass varchar(15),
+phone_no numeric(10),
+wallet_balance float(10),
+address varchar(30),
+constraint c_pk primary key(cust_id)
 );
-drop table tar_emp;
-alter table trg_employees rename to tar_emp;
-alter table tar_emp drop column first_name;
-desc tar_emp;
+
+create table Vender(
+vendor_id varchar(5) not null,
+ven_name varchar(15) not null,
+ven_usern varchar(15) not null,
+ven_pass varchar(15) not null,
+ven_phone int,
+ven_add varchar(30),
+constraint v_pk primary key(vendor_id)
+);
+
+create table FoodMenu(
+food_id varchar(5) not null,
+food_item varchar(15) not null,
+amount float(10) not null,
+constraint fm_pk primary key(food_id)
+);
+
+create table FoodOrder(
+order_id varchar(5) not null,
+quantity int not null,
+dates date ,
+esti_time timestamp,
+total_amount float(10) not null,
+Order_status varchar(5),
+reason varchar(15),
+constraint o_pk primary key(order_id)
+);
+
+
 
