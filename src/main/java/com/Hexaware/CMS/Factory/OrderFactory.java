@@ -1,6 +1,11 @@
 package com.Hexaware.CMS.Factory;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.UUID;
+
 import com.Hexaware.CMS.Model.Menu;
+import com.Hexaware.CMS.Model.Order_;
 import com.Hexaware.CMS.Persistence.OrderDb;
 
 /**
@@ -9,9 +14,9 @@ import com.Hexaware.CMS.Persistence.OrderDb;
  */
 public class OrderFactory {
     
-    public static int OrderFood(int fid,String fname,int fprice,int fquan){
-        int foodTotal=fquan*fprice;
-       int result= OrderDb.insertDb(fid,fname,fprice,fquan,foodTotal);
+    public static int OrderFood(String OrderId,String VendorID,String Username,String FoodId,int Quantity,float FoodPrice ){
+        float foodTotal=Quantity*FoodPrice;
+       int result= OrderDb.insertDb(OrderId,VendorID,Username,FoodId,Quantity,new Date(),new Date(),foodTotal,"Open","");
        return result;
     }
 
@@ -19,7 +24,11 @@ public class OrderFactory {
         Menu menu[]=OrderDb.fetchDb();
         return menu;
     }
-
+    public static Order_[] fetcOrderHistoryByCustomer(String username){
+    	Order_ oh[]=OrderDb.fetchOrderHistoryByCustomer(username);
+    	//System.out.println("Rows:"+oh.length);
+        return oh;
+    }
     // public static Customer customerProfile(){}
     // public static Vendor vendorProfile(){}
     // public static Order[] customerOrderHistory(){}

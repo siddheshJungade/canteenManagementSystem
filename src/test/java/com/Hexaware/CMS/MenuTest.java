@@ -16,7 +16,7 @@ public class MenuTest
     static Menu menu;
     @BeforeClass
     public static void beforeClass(){
-        menu=new Menu(101,"Burger",100);
+        menu=new Menu("101","Burger",100,"ghh");
     }
    
     @Test
