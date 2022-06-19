@@ -1,0 +1,377 @@
+1.TO CREATE A TABLE NAME AS "BOOK":
+
+create table book(Bookid int(5) PRIMARY KEY,
+		  Title varchar(50) NOT NULL,
+		  Publisher varchar(50) NOT NULL,
+		  isbn_no varchar(10) UNIQUE,
+		  Price decimal(5,2) DEFAULT 0.0,
+		  Pdate date NOT NULL);
+
+
+2.To display the structure of the table book:
+
+DESC book;
+
+output:
+
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| Bookid    | int(5)       | NO   | PRI | NULL    |       |
+| Title     | varchar(50)  | NO   |     | NULL    |       |
+| Publisher | varchar(50)  | NO   |     | NULL    |       |
+| isbn_no   | varchar(10)  | YES  | UNI | NULL    |       |
+| Price     | decimal(5,2) | YES  |     | 0.00    |       |
+| Pdate     | date         | NO   |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+3.TO ADD A NEW COLUMN AT THE END OF THE TABLE WITH discount number(4,2) values:
+
+ alter table book ADD discount double(4,2);
+output:
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| Bookid    | int(5)       | NO   | PRI | NULL    |       |
+| Title     | varchar(50)  | NO   |     | NULL    |       |
+| Publisher | varchar(50)  | NO   |     | NULL    |       |
+| isbn_no   | varchar(10)  | YES  | UNI | NULL    |       |
+| Price     | decimal(5,2) | YES  |     | 0.00    |       |
+| Pdate     | date         | NO   |     | NULL    |       |
+| discount  | double(4,2)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+4.TO CHANGE DATA TYPE OF isbn_no TO CHAR(10) ALSO APPLY NOT NULL CONSTRAINT
+
+ alter table book modify column isbn_no char(10) NOT NULL;
+output:
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| Bookid    | int(5)       | NO   | PRI | NULL    |       |
+| Title     | varchar(50)  | NO   |     | NULL    |       |
+| Publisher | varchar(50)  | NO   |     | NULL    |       |
+| isbn_no   | char(10)     | NO   | UNI | NULL    |       |
+| Price     | decimal(5,2) | YES  |     | 0.00    |       |
+| Pdate     | date         | NO   |     | NULL    |       |
+| discount  | double(4,2)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+5.TO INSERT THE VALUES INTO THE TABLE:
+
+insert into book values('1','FIT Book','Ratna','13478690','400.00','01-jul-2018','5.0');
+
+ insert into book values('2','Physics text','TMH','28476292','312.75','22-Jan-2017','7.5');
+
+insert into book values('3','Accountancy Paper','Pearson','34868686','324.28','03-Aug-2005','12.0');
+
+insert into book values('4','All in one','Genius','92471462','250.00','01-Jan-2011',DEFAULT);
+
+insert into book values('5','Color book','Ashirwad','36362978','0.00','31-dec-2015','0.0');
+
+insert into book values('6','First Flight','TMH','32978462','44.0','05-Jun-2018','0.0');
+
+6.TO DISPLAY ALL RECORDS OF TABLE BOOK
+
+select*from book;
+output:
++--------+-------------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title             | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+|      1 | FIT Book          | Ratna     | 13478690 | 400.00 | 01-jul-2018 |     5.00 |
+|      2 | Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
+|      3 | Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005 |    12.00 |
+|      4 | All in one        | Genius    | 92471462 | 250.00 | 01-Jan-2011 |     NULL |
+|      5 | Color book        | Ashirwad  | 36362978 |   0.00 | 31-dec-2015 |     0.00 |
+|      6 | First Flight      | TMH       | 32978462 |  44.00 | 05-Jun-2018 |     0.00 |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+
+7.TO DISPLAY TITLE,PRICE AND DISCOUNT OF ALL BOOK
+
+select title,price,discount from book;
+output:
++-------------------+--------+----------+
+| title             | price  | discount |
++-------------------+--------+----------+
+| FIT Book          | 400.00 |     5.00 |
+| Physics text      | 312.75 |     7.50 |
+| Accountancy Paper | 324.28 |    12.00 |
+| All in one        | 250.00 |     NULL |
+| Color book        |   0.00 |     0.00 |
+| First Flight      |  44.00 |     0.00 |
++-------------------+--------+----------+
+
+8.TO DISPLAY DISTINCT VALUES OF COLUMN DISCOUNT FROM TABLE BOOK
+
+select distinct(discount) from book;
+output:
++----------+
+| discount |
++----------+
+|     5.00 |
+|     7.50 |
+|    12.00 |
+|     NULL |
+|     0.00 |
++----------+
+
+9.TO DISPLAY ALL RECORDS OF BOOK SUCH THAT TITLE SHOULD BE DISPLAYED AS name AND PDATE AS publishing_date
+
+select title as 'name',publisher,isbn_no,price,pdate as 'publishing_date',discount from book;
+output:
++-------------------+-----------+----------+--------+-----------------+----------+
+| name              | publisher | isbn_no  | price  | publishing_date | discount |
++-------------------+-----------+----------+--------+-----------------+----------+
+| FIT Book          | Ratna     | 13478690 | 400.00 | 01-jul-2018     |     5.00 |
+| Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017     |     7.50 |
+| Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005     |    12.00 |
+| All in one        | Genius    | 92471462 | 250.00 | 01-Jan-2011     |     NULL |
+| Color book        | Ashirwad  | 36362978 |   0.00 | 31-dec-2015     |     0.00 |
+| First Flight      | TMH       | 32978462 |  44.00 | 05-Jun-2018     |     0.00 |
++-------------------+-----------+----------+--------+-----------------+----------+
+
+10.TO DISPLAY ALL RECORDS OF TABLE BOOK WHOSE PRICE IS MORE THAN 3000
+
+select* from book where price>300;
+output:
++--------+-------------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title             | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+|      1 | FIT Book          | Ratna     | 13478690 | 400.00 | 01-jul-2018 |     5.00 |
+|      2 | Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
+|      3 | Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005 |    12.00 |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+
+11.TO DISPLAY ALL RECORDS OF THE TABLE BOOK WHOSE PRICE IS LESS THAN 380
+
+select* from book where price<380;
+OUTPUT:
++--------+-------------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title             | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+|      2 | Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
+|      3 | Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005 |    12.00 |
+|      4 | All in one        | Genius    | 92471462 | 250.00 | 01-Jan-2011 |     NULL |
+|      5 | Color book        | Ashirwad  | 36362978 |   0.00 | 31-dec-2015 |     0.00 |
+|      6 | First Flight      | TMH       | 32978462 |  44.00 | 05-Jun-2018 |     0.00 |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+
+12.TO DISPLAY ALL RECORDS OF TABLE BOOK WHOSE TITLE IS COLORBOOK
+
+select* from book where title='color book';
+output:
++--------+------------+-----------+----------+-------+-------------+----------+
+| Bookid | Title      | Publisher | isbn_no  | Price | pdate       | discount |
++--------+------------+-----------+----------+-------+-------------+----------+
+|      5 | Color book | Ashirwad  | 36362978 |  0.00 | 31-dec-2015 |     0.00 |
++--------+------------+-----------+----------+-------+-------------+----------+
+
+13.TO DISPLAY ALL RECORDS OF TABLE WHOSE isbn_no IS NOT EQUAL TO 13478690
+
+select* from book where isbn_no!='13478690';
+output:
++--------+-------------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title             | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+|      2 | Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
+|      3 | Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005 |    12.00 |
+|      4 | All in one        | Genius    | 92471462 | 250.00 | 01-Jan-2011 |     NULL |
+|      5 | Color book        | Ashirwad  | 36362978 |   0.00 | 31-dec-2015 |     0.00 |
+|      6 | First Flight      | TMH       | 32978462 |  44.00 | 05-Jun-2018 |     0.00 |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+
+14.TO DISPLAY ALL RECORDS OF THE BOOK WHOSE DISCOUNT MORE THAN OR EQUAL TO 5.0
+
+select* from book where discount>=5.0;
+output:
++--------+-------------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title             | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+|      1 | FIT Book          | Ratna     | 13478690 | 400.00 | 01-jul-2018 |     5.00 |
+|      2 | Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
+|      3 | Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005 |    12.00 |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+
+15.TO DISPLAY ALL RECORDS OF BOOKS WHOSE DISCOUNT IS LESS THAN OR EQUAL TO 10.0
+
+select* from book where discount<=10.0;
+output:
++--------+--------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title        | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+--------------+-----------+----------+--------+-------------+----------+
+|      1 | FIT Book     | Ratna     | 13478690 | 400.00 | 01-jul-2018 |     5.00 |
+|      2 | Physics text | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
+|      5 | Color book   | Ashirwad  | 36362978 |   0.00 | 31-dec-2015 |     0.00 |
+|      6 | First Flight | TMH       | 32978462 |  44.00 | 05-Jun-2018 |     0.00 |
++--------+--------------+-----------+----------+--------+-------------+----------+
+
+16.TO DISPLAY TITLE,PUBLISHER AND PRICE OF ALL BOOKS WHOSE PRICE IS NULL
+
+select Title,publisher,price from book where price IS NULL;
+output:
+Empty set
+
+17.TO DISPLAY BOOKID,ISBN_NO,PDATE OF ALL BOOKS WHOSE PRICE IS NOT NULL
+
+select Bookid,isbn_no,pdate from book where price IS NOT NULL;
+output:
++--------+----------+-------------+
+| Bookid | isbn_no  | pdate       |
++--------+----------+-------------+
+|      1 | 13478680 | 01-jul-2018 |
+|      2 | 28476292 | 22-Jan-2017 |
+|      3 | 34868686 | 03-Aug-2005 |
+|      4 | 92471462 | 01-Jan-2011 |
+|      5 | 36362978 | 31-dec-2015 |
+|      6 | 32978462 | 05-Jun-2018 |
++--------+----------+-------------+
+
+18.TO DISPLAY BOOKID,TITLE,PRICE FOR ALL BOOKS WHOSE PDATE IS FROM 31-DEC-2015 TO 01-JUL-2018
+
+select Bookid,Title,price from book where pdate BETWEEN '31-dec-2015' and '01-juL-2018';
+output:
+Empty set
+
+19.TO DISPLAY ALL BOOKS WHOSE PRICE IS NOT IN THE RANGE OF 250,324.28
+
+ select* from book where price NOT BETWEEN '250'and'324.28';
+output:
++--------+--------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title        | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+--------------+-----------+----------+--------+-------------+----------+
+|      1 | FIT Book     | Ratna     | 13478680 | 400.00 | 01-jul-2018 |     5.00 |
+|      5 | Color book   | Ashirwad  | 36362978 |   0.00 | 31-dec-2015 |     0.00 |
+|      6 | First Flight | TMH       | 32978462 |  44.00 | 05-Jun-2018 |     0.00 |
++--------+--------------+-----------+----------+--------+-------------+----------+
+
+20.TO DISPLAY ALL BOOKS WHOSE PUBLISHER HAS LETTER 'i' ANY WHERE
+
+select* from book where publisher LIKE '%i%';
+output:
++--------+------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title      | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+------------+-----------+----------+--------+-------------+----------+
+|      4 | All in one | Genius    | 92471462 | 250.00 | 01-Jan-2011 |     NULL |
+|      5 | Color book | Ashirwad  | 36362978 |   0.00 | 31-dec-2015 |     0.00 |
++--------+------------+-----------+----------+--------+-------------+---------
+-+
+
+21.TO DISPLAY ALL BOOKS WHOSE PUBLISHER HAS LAST LETTAR 'k'
+
+select* from book where publisher LIKE '%k';
+output:
+Empty set
+
+22.TO DISPLAY ALL BOOKS WHOSE PUBLISHER HAS SECOND LAST LETTER 'i'
+
+select* from book where publisher LIKE '_i%';
+output:
+Empty set
+
+23.TO DISPLAY TITLE,"FINAL PRICE"(payable price after discount)for all books
+
+select Title,(price-discount) as 'final price' from book;
+output:
++-------------------+-------------+
+| Title             | final price |
++-------------------+-------------+
+| FIT Book          |      395.00 |
+| Physics text      |      305.25 |
+| Accountancy Paper |      312.28 |
+| All in one        |        NULL |
+| Color book        |        0.00 |
+| First Flight      |       44.00 |
++-------------------+-------------+
+
+24.TO DISPLAY ALL BOOKS WHOSE PRICE IS MORE THAN 250 AND DISCOUNT IS NOT NULL
+
+ select* from book where price>250 && discount IS NOT NULL;
+output:
++--------+-------------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title             | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+|      1 | FIT Book          | Ratna     | 13478680 | 400.00 | 01-jul-2018 |     5.00 |
+|      2 | Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
+|      3 | Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005 |    12.00 |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+
+25.TO DISPLAY PUBLISHER,PDATE OF ALL BOOKS WHOSE TITLE STARTS WITH LETTER 'a' OR PDATE IS BEFORE 01-JAN-2017
+
+select publisher,pdate from book where title LIKE 'a%'|| pdate<'01-Jan-2017';
+output:
++-----------+-------------+
+| publisher | pdate       |
++-----------+-------------+
+| Pearson   | 03-Aug-2005 |
+| Genius    | 01-Jan-2011 |
++-----------+-------------+
+
+26.TO DISPLAY TITLE,PUBLISHER,PDATE OF ALL BOOKS WHOSE PDATE IS 01-JUL-2018 OR 22-JAN-2017 OR 31-DEC-2015
+
+select Title,publisher,pdate from book where pdate='01-jul-2018' Or pdate='22-Jan-2017' Or pdate='31-dec-2015';
+output:
++--------------+-----------+-------------+
+| Title        | publisher | pdate       |
++--------------+-----------+-------------+
+| FIT Book     | Ratna     | 01-jul-2018 |
+| Physics text | TMH       | 22-Jan-2017 |
+| Color book   | Ashirwad  | 31-dec-2015 |
++--------------+-----------+-------------+
+
+27.TO DISPLAY BOOKID,TITLE,ISBN_NO,PDATE OF ALL BOOKS WHOSE PDATE IS NEITHER 05-JUN-2018 NOT 22-JAN-2017
+
+select Bookid,Title,isbn_no,pdate from book where pdate!='05-Jun-2018' && pdate!='22-Jan-2017';
+output:
++--------+-------------------+----------+-------------+
+| Bookid | Title             | isbn_no  | pdate       |
++--------+-------------------+----------+-------------+
+|      1 | FIT Book          | 13478680 | 01-jul-2018 |
+|      3 | Accountancy Paper | 34868686 | 03-Aug-2005 |
+|      4 | All in one        | 92471462 | 01-Jan-2011 |
+|      5 | Color book        | 36362978 | 31-dec-2015 |
++--------+-------------------+----------+-------------+
+
+28.TO DISPLAY DETAILS OF ALL BOOKS IN THE ASCENDING ORDER OF THEIR TITLE
+
+select* from book ORDER BY title;
+OUTPUT:
++--------+-------------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title             | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+|      3 | Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005 |    12.00 |
+|      4 | All in one        | Genius    | 92471462 | 250.00 | 01-Jan-2011 |     NULL |
+|      5 | Color book        | Ashirwad  | 36362978 |   0.00 | 31-dec-2015 |     0.00 |
+|      6 | First Flight      | TMH       | 32978462 |  44.00 | 05-Jun-2018 |     0.00 |
+|      1 | FIT Book          | Ratna     | 13478680 | 400.00 | 01-jul-2018 |     5.00 |
+|      2 | Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+
+29.TO DISPLAY DETAILS OF ALL BOOKS IN THE DESCENDING ORDER OF THEIR PRICE
+
+select* from book ORDER BY price DESC;
+output:
++--------+-------------------+-----------+----------+--------+-------------+----------+
+| Bookid | Title             | Publisher | isbn_no  | Price  | pdate       | discount |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+|      1 | FIT Book          | Ratna     | 13478680 | 400.00 | 01-jul-2018 |     5.00 |
+|      3 | Accountancy Paper | Pearson   | 34868686 | 324.28 | 03-Aug-2005 |    12.00 |
+|      2 | Physics text      | TMH       | 28476292 | 312.75 | 22-Jan-2017 |     7.50 |
+|      4 | All in one        | Genius    | 92471462 | 250.00 | 01-Jan-2011 |     NULL |
+|      6 | First Flight      | TMH       | 32978462 |  44.00 | 05-Jun-2018 |     0.00 |
+|      5 | Color book        | Ashirwad  | 36362978 |   0.00 | 31-dec-2015 |     0.00 |
++--------+-------------------+-----------+----------+--------+-------------+----------+
+
+30.TO INCREASE PRICE OF EVERY BOOK BY 10% WHOSE PRICE IS LESS THAN 300
+update book set price=price*0.1 where price<300;
+
+31.TO DELETE ALL RECORDS FROM TABLE BOOK WHOSE PRICE IS 0 TO 300
+delete from b where price BETWEEN 0 and 300;
+
+32.TO DROP COLUMN ISBN_NO FROM TABLE BOOK
+alter table book drop column isbn_no;
+
+33.QUERY TO DROP TABLE BOOK
+
+DROP TABLE book;
+
+
