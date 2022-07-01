@@ -7,7 +7,7 @@ import com.Hexaware.CMS.Model.Vendor;
 import com.Hexaware.CMS.Persistence.OrderDb;
 
 /**
- * OrderFactory class used to fetch and insert data to database.
+ * OrderFactory class used to fetch and insert data to database. something
  * @author hexware
  */
 public class OrderFactory {
