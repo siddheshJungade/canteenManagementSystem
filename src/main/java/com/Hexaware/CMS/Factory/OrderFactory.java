@@ -1,11 +1,9 @@
 package com.Hexaware.CMS.Factory;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.UUID;
-
+import com.Hexaware.CMS.Model.Customer;
 import com.Hexaware.CMS.Model.Menu;
-import com.Hexaware.CMS.Model.Order_;
+import com.Hexaware.CMS.Model.OrderDetails;
+import com.Hexaware.CMS.Model.Vendor;
 import com.Hexaware.CMS.Persistence.OrderDb;
 
 /**
@@ -14,24 +12,42 @@ import com.Hexaware.CMS.Persistence.OrderDb;
  */
 public class OrderFactory {
     
-    public static int OrderFood(String OrderId,String VendorID,String Username,String FoodId,int Quantity,float FoodPrice ){
-        float foodTotal=Quantity*FoodPrice;
-       int result= OrderDb.insertDb(OrderId,VendorID,Username,FoodId,Quantity,new Date(),new Date(),foodTotal,"Open","");
+    public static int OrderFood(int fid,String fname,int fprice,int fquan){
+        int foodTotal=fquan*fprice;
+       int result= OrderDb.insertDb(fid,fname,fprice,fquan,foodTotal);
        return result;
     }
 
-    public static Menu[] fetchMenu(){
-        Menu menu[]=OrderDb.fetchDb();
+    public static Menu[] showFoodMenu(){
+        Menu menu[]=OrderDb.showFoodMenu();
         return menu;
     }
-    public static Order_[] fetcOrderHistoryByCustomer(String username){
-    	Order_ oh[]=OrderDb.fetchOrderHistoryByCustomer(username);
-    	//System.out.println("Rows:"+oh.length);
-        return oh;
+
+     public static Customer[] customerProfile(){  
+          return OrderDb.customerProfileDb();
+         }
+    public static Vendor[] vendorProfile(){
+        return OrderDb.vendorProfileDb();
     }
-    // public static Customer customerProfile(){}
-    // public static Vendor vendorProfile(){}
-    // public static Order[] customerOrderHistory(){}
-    // public static Order[] vendorOrderHistory(){}
-    // public static String acceptRejectOrder(){}
+
+    // validate the VendorId
+
+    public static Vendor validateVendor(int venId ){
+        return OrderDb.validateVendor(venId);
+    }
+     public static OrderDetails[] customerOrderHistory(String custId){
+         return OrderDb.customerOrderHistoryDb(custId);
+     }
+     public static OrderDetails[] vendorOrderHistory(int vendorId){
+         return OrderDb.vendorOrderHistoryDb(vendorId);
+     }
+     public static String acceptRejectOrder(){
+         return OrderDb.acceptOrRejectOrder();
+     }
+     public static Customer validateCustomerLogin( int custLoginId, String custPassword){
+        return OrderDb.validateCustomerLogin(custLoginId, custPassword);
+      }
+      public static int placeOrder(){
+          return OrderDb.placeOrder();
+      }
 }

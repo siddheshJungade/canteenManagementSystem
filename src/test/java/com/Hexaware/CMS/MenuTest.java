@@ -16,20 +16,24 @@ public class MenuTest
     static Menu menu;
     @BeforeClass
     public static void beforeClass(){
-        menu=new Menu("101","Burger",100,"ghh");
+        menu=new Menu(201,"Veggie Farmhouse Pizza",320,001);
     }
    
     @Test
     public  void testGet(){
-       assertEquals(101,menu.getFoodId());
-       assertEquals("Burger",menu.getFoodName());
-       assertEquals(100,menu.getFoodPrice()); 
+       assertEquals(201,menu.getFoodId());
+       assertEquals("Veggie Farmhouse Pizza",menu.getFoodName());
+       assertEquals(320,menu.getFoodPrice()); 
     }
 
     @Test
     public void testToString(){
         String str=menu.toString();
-        String expected= "Menu id:"+menu.getFoodId()+"Menu Name:"+menu.getFoodName()+"Menu Price"+menu.getFoodPrice();
+        String expected = 
+            "food id:"+menu.getFoodId()+
+            "food Name:"+menu.getFoodName()+
+            "food Price"+menu.getFoodPrice() + 
+            "Vendor id :"+menu.getVendorId();
         assertEquals(expected,str);
     }
     @AfterClass
