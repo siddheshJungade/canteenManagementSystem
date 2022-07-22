@@ -1,0 +1,29 @@
+Query #1: Display passenger name who has a ‘e’ as second letter in their name.
+
+ans: SELECT passenger_name from Passenger WHERE passenger_name LIKE %_E%;
+
+Query #2: Display the name of the youngest passenger. 
+
+ANS : SELECT passenger_name from Passenger ORDER BY Passenger_dob DESC;
+
+Query #3: Display the number of flights leaving Kolkata. 
+ans : SELECT COUNT(*) AS  No_of_flight  FROM Flight WHERE flightsource = "Kolkatta";
+
+Query #4: Display the passenger’s name having more than 1 booking. 
+
+SELECT passenger_name FROM Passenger 
+
+JOIN Booking_details ON Booking_details.Booking_id = Booking_details.passenger_id 
+
+GROUP BY passenger_name 
+
+HAVING COUNT(*) >1;
+
+
+
+
+
+
+
+
+
