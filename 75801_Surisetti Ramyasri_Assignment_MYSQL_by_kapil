@@ -1,0 +1,84 @@
+1.)	create table BOOK (
+	Bookid INT (5) primary key,
+	Title VARCHAR(50) NOT NULL,
+	Publisher VARCHAR(50) NOT NULL, 
+	isb_no VARCHAR (10) unique , 
+	Pdate date NOT NULL, 
+	price double(5,2) default 0.0
+	);
+
+	
+2.)	desc BOOK;
+
+3.)	alter table BOOK add discount double(4,2);
+
+4.)	alter table BOOK 
+	modify ISBN_NO char(10) not null;
+
+5.)	insert into BOOK (bookid , title, publisher, isb_no, pdate, price, discount)
+	values (1, "FIT BOOK", 'Ratna' ,13478690,'2018-07-01', 400.00, 5.0),
+	(2, "Physics text", 'TMH' ,28476292, '2017-01-22', 312.75, 7.5),
+	(3, "Accountancy Paper" , 'Pearson' ,34868686, '2005-08-03', 324.28, 12.0),
+	(4, "All in one" , 'Genius' , 92471462 , '2011-01-01', 250.00, 12.0),
+	(5, "Color BOOK" ,'Ashirwad' , 36362978, '2015-12-31', 0.00, 0.0),
+	(6, "First Flight" ,'TMH', 32978462, '2018-06-05', 4.00, 0.0);
+
+	
+6.)	select * from BOOK;
+
+7.)	select title,price,discount from BOOK;
+
+8.)	select  distinct discount from BOOK;	
+
+9.)	select title name, pdate publishing_date from BOOK;
+
+10.)	select * from BOOK where price > 300;
+
+11.)	select * from BOOK where price < 300;
+
+12.)	select * from BOOK where title = ' color BOOK';
+
+13.)	select * from BOOK where isb_no != ' color BOOK';
+
+14.)	select * from BOOK where  discount >= 5.0 ;
+
+15.)	select * from BOOK where  discount <= 10.0 ;
+
+16.)	select title,publisher,price from BOOK where price is null;
+
+17.)	select bookid , isb_no, pdate from BOOK where price is not null;
+
+18.)	select bookid , title , price from BOOK where pdate between '2015-12-31' and '2018-06-01';
+
+19.)	select * from BOOK where price not between 250 and 324.28;
+
+20.)	select * from BOOK where publisher like '%i%';
+
+21.)	select * from BOOK where publisher like '%k';
+
+22.)	select * from BOOK where publisher like '%i_';
+
+23.)	select  title ,(price-discount) "FINAL PRICE" from BOOK;
+
+24.)	select * from BOOK where price > 250 && discount is NOT NULL;
+
+25.)	select publisher , pdate from BOOK where titile like 'a%' || pdate < '2017-01-01';
+
+26.)	select title, publisher , pdate from BOOK where pdate IN('2018-07-01' , '2017-01-22' , '2015-12-31');
+
+27.)	select bookid , title, publisher ,isb_no, pdate from BOOK where pdate IN('2018-06-01' , '2017-01-22' );
+
+28.)	select * from BOOK order by title;
+
+29.)	select * from book order by price desc;
+
+30.)	update BOOK set price = (price+(price*0.1)) where price < 300;
+
+31.)	delete from book where price between 0 && 300;
+
+32.)	alter table BOOK drop coloumn isb_no;
+
+33.)	drop TABLE BOOK;
+
+
+

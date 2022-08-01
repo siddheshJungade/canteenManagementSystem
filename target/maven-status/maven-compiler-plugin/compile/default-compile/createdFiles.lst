@@ -1,4 +1,7 @@
 com\Hexaware\CMS\Persistence\OrderDb.class
 com\Hexaware\CMS\Cli\CliMain.class
 com\Hexaware\CMS\Factory\OrderFactory.class
+com\Hexaware\CMS\Model\Vendor.class
 com\Hexaware\CMS\Model\Menu.class
+com\Hexaware\CMS\Model\OrderDetails.class
+com\Hexaware\CMS\Model\Customer.class

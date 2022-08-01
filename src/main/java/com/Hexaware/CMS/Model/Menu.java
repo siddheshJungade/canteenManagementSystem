@@ -8,13 +8,24 @@ public class Menu {
     private int foodId;
     private String foodName;
     private int foodPrice;
+    private int vendorId;// add this instance variable
 
+    public int getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(int vendorId) {
+        this.vendorId = vendorId;
+    }
     public Menu(){}
 
-    public Menu(int foodId,String foodName, int foodPrice){
+    // the parameter vendorId
+    public Menu(int foodId,String foodName, int foodPrice, 
+            int vendorId){
         this.foodId=foodId;
         this.foodName=foodName;
         this.foodPrice=foodPrice;
+        this.vendorId = vendorId;
 
     }
     public void setFoodId(int foodId){
@@ -40,7 +51,13 @@ public class Menu {
     public int getFoodPrice(){
         return foodPrice;
     }
+    // modify to show vendor id.
     public String toString(){
-        return "food id:"+foodId+"food Name:"+foodName+"food Price"+foodPrice;
+        return "food id: "+foodId+" food Name: "+foodName+
+                " food Price "+foodPrice + " Vendor id : "+vendorId;
     }
+
+    
+
+    
 }
