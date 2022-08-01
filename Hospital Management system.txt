@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 **creating doctor master table**
 use anushahaa;
 create table doctor_master( doctor_id varchar(15) not null unique,doctor_name varchar(15) not null,dept varchar(15)not null);
@@ -112,3 +113,119 @@ select room_no from room_master where status='vacant';
 
 
 
+=======
+**creating doctor master table**
+use anushahaa;
+create table doctor_master( doctor_id varchar(15) not null unique,doctor_name varchar(15) not null,dept varchar(15)not null);
+***inserting values in table**
+select * from doctor_master;
+insert into doctor_master values('D0001','Ram','ENT');
+insert into doctor_master values('D0002','Rajan','ENT');
+insert into doctor_master values('D0003','smita','EYE');
+insert into doctor_master values('D0004','bhavan','surgery');
+insert into doctor_master values('D0005','sheela','surgery');
+insert into doctor_master values('D0006','nethra','surgery');
+
+***create room master table**
+use anushahaa;
+
+create table ROOM_MASTER
+
+(room_no varchar(15) unique not null,
+
+room_type varchar(15) not null,
+
+status varchar(15) not null);
+
+
+
+
+
+desc ROOM_MASTER;
+
+select * from ROOM_MASTER;
+
+
+insert into ROOM_MASTER values('R0001','AC','occupied');
+
+insert into ROOM_MASTER values('R0002','Suite','vacant');
+
+insert into ROOM_MASTER values('R0003','NonAC','vacant');
+
+insert into ROOM_MASTER values('R0004','NonAC','occupied');
+
+insert into ROOM_MASTER values('R0005','AC','vacant');
+
+insert into ROOM_MASTER values('R0006','AC','occupied');
+
+create table Patient_Master
+(P_Id varchar(15)not null,
+Name varchar(15)not null,
+Age integer(15)not null,
+Weight integer(15)not null,
+Gender varchar(15)not null,
+Address varchar(50)not null,
+Phone_no varchar(10) null,
+Disease varchar(50)not null,
+Doctor_id varchar(5)not null,
+constraint patient_uk unique(P_Id));
+
+desc Patient_Master;
+
+select * from Patient_Master;
+
+insert into Patient_Master values('P0001','Gita',35,65,'F','Chennai','9867145678','Eye Infection','D0003');
+insert into Patient_Master values('P0002','Ashish',40,70,'M','Delhi','98456756678','Asthma','D0003');
+insert into Patient_Master values('P0003','Radha',25,60,'F','Chennai','9867166678','Pain in heart','D0005');
+insert into Patient_Master values('P0004','Chandra',28,55,'F','Bangalore','9978675567','Asthma','D0001');
+insert into Patient_Master values('P0005','Goyal',42,65,'M','Delhi','8967533223','Pain in stomach','D0004');
+
+use anushahaa;
+create table Room_Allocate
+(room_no varchar(15),
+P_Id varchar(15),
+Admission_Date date not null,
+Release_Date date);
+
+ desc Room_Allocate;
+
+Select *  from Room_Allocate;
+insert into Room_Allocate values('R0001','P0001','2016-10-15','2016-10-26');
+insert into Room_Allocate values('R0002','P0002','2016-11-16','2016-11-26');
+insert into Room_Allocate values('R0002','P0003','2016-12-01','2016-12-30');
+insert into Room_Allocate values('R0004','P0001','2017-01-01','2017-01-30');
+
+
+**Queris**
+Query#1 display the patients who were admitted in the month of january
+
+ select * from the ROOM_ALLOCATION where admission_date='2017-01-01';
+
+Query#2 display the female patient who is not suffering from asthma
+
+ select *from PATIENT_MASTER where gender=m and disease!='asthma'
+
+Query#3 count the number of male and female patients
+
+select count (gender) as "malepatients" from patient_master where gender=m;
+select count(gender) as "femalepatients" from patient_master where gender=f;
+
+ Query#4 display the patient_id,patient_name,doctor_id,doctor_name,room_no,room_type and admission_date.
+
+select p.pid,p.name,d.doctor_id ,d.doctor_name,r.room_no,r.room_type,rm.admission_date from patient_master p join
+doctor_master d on p.doctor_id=d.doctor_id join room_allocation rm on rm.pid = p.pid join room_master r on r.room_no=rm.room_no;
+
+query#5 display the room_no which was never allocated to any patient
+
+select room_no from room_master where status='vacant';
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 84e1aaf891ddb3c3b5f337cb03fbeec1b23e87f4
