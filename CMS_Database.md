@@ -2,12 +2,13 @@
 
 ## Create Database 
 ## replace 123456 with your employeeid
-drop database CMSDB123456;
-create database CMSDB123456;
 
-use CMSDB123456;
 
- 
+create database if not exists CMSDB75791;
+
+use CMSDB75791;
+
+
 
 CREATE TABLE Vendor(
 Vendor_id integer PRIMARY KEY,
@@ -75,9 +76,3 @@ INSERT INTO OrderDetails VALUES(6,003,'C0005',209,1,'2022-04-21 06:00:12',220,'A
 
 
 select * from orderDetails;
-
-
-
-
-
- 
