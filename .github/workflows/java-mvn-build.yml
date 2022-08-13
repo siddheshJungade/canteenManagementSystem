@@ -1,6 +1,6 @@
 name: learn-github-action
 on:
-  relised:
+  release:
     type: [push]
 jobs:
   build:
