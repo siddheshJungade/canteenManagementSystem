@@ -14,3 +14,5 @@ jobs:
         distribution: "temurin"
         server-id: github 
         settings-path: ${{ github.workspace }}
+    - name: Build with Maven
+      run: mvn package
