@@ -3,17 +3,11 @@
 
 name: Maven Package
 
-on:
-  release:
-    types: [commit]
+on:[push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
     - uses: actions/checkout@v3
@@ -21,9 +15,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
-        distribution: 'temurin'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
+        distribution: 'adopt'
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run:  mvn --batch-mode --update-snapshots package
