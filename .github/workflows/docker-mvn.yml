@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
   
-    - name: Check out code
+    - name: Check out code com
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: siddheshjungade/demojava-app
