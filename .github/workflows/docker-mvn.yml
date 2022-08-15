@@ -1,0 +1,22 @@
+name: Docker Images CLI
+
+on:
+  push:
+    branches: [ "master" ]
+  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: S{{ secrets.DOCKERHUB_TOKEN }}
+      -
+        uses: actions/build-push-action@v3
+        with:
+          push: true
+          tags: siddheshjungade/javaCalculator:latest

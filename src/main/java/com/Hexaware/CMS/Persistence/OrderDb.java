@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
  */
 public class OrderDb {
     static int i;
-    static String url = "jdbc:mysql://localhost:3306/CMSDB75791?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    static String url = "jdbc:mysql://docker-mysql/CMSDB75791?enabledTLSProtocols=TLSv1.2";
     static String username = "root";
     static String password = "password";
 
