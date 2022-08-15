@@ -15,5 +15,6 @@ jobs:
       with:
         image: siddheshjungade/demojava-app
         tags: v1, latest
+        registry: docker.com
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
