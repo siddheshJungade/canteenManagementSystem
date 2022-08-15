@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: S{{ secrets.DOCKERHUB_TOKEN }}
       -
-        uses: actions/build-push-action@v3
+        uses: docker/build-push-action@v3
         with:
           push: true
           tags: siddheshjungade/javaCalculator:latest
