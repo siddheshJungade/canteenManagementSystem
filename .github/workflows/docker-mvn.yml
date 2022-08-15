@@ -24,4 +24,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: siddheshjungade/javaCalculator:latest
+          tags: siddheshjungade/demojava-app:1.0
