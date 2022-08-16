@@ -8,12 +8,6 @@ pipeline {
         choice(name: 'VERSION',choice:['1','2','3'],descpration: "")
         booleanParm(name: 'executeTests',defaultValue: true, descpration: "")
     }
-    tools {
-        maven 'Maven'
-        gradel
-        jdk
-
-    }
     stages {
         stage("build") {
             steps {
