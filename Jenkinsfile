@@ -3,16 +3,13 @@ def gv
 pipeline {
     agent any
 
-    environment {
-        NEW_VERSION = '1.3.0'
-    } 
     parameters {
         choice(name: 'VERSION',choices:['1','2','3'],description: "")
         booleanParam(name: 'executeTests',defaultValue: true, description: "")
     }
     stages {
         stage("init") {
-            steps{
+            steps {
                 script {
                     gv = load "script,groovy"
                 }
@@ -34,7 +31,7 @@ pipeline {
         }
         steps {
               script{
-                gv.buildApp()
+                gv.testApp()
               }
         }
     }
