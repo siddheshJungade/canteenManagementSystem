@@ -1,56 +1,35 @@
-def gv
-
 pipeline {
     agent any
 
-    parameters {
-        choice(name: 'VERSION',choices:['1','2','3'],description: "")
-        booleanParam(name: 'executeTests',defaultValue: true, description: "")
+    tools {
+        maven 'Maven'
     }
+
     stages {
-        stage('init') {
+        stage("build jar") {
             steps {
-                script {
-                    gv = load "script.groovy"
-                }
-            }
-        }
-        stage("build") {
-            steps {
-                script {
-                    gv.buildApp()
-                }
+                echo "building the application"
+                sh 'mvn package'
             }
         }
 
-    stage("test") {
-        when {
-            expression {
-                params.executeTests == true
-            }
-        }
-        steps {
-              script{
-                gv.testApp()
-              }
-        }
-    }
-    stage("deploy") {
+        stage("building docker image") {
             steps {
-                echo "deployment"
+                script {
+                    echo "building the docker images"
+                    withCredentials(credentialsId:'docker_hub_id',usernameVariable: 'USER',passwordVariable : "PWD")
+                    sh 'docker build -t siddheshjungade/demojava-app .'
+                    sh 'echo $PWD | docker login -u $USER --password-stdin'
+                    sh 'docker push siddheshjungade/demojava-app'
+                }
             }
         }
-    }
-
-    post {
-        always {
-            echo "sending email"
-        }
-        success {
-            echo "build success"
-        }
-        failure {
-            echo "build failure"
+        stage('deploy') {
+            steps {
+                script {
+                    echo "deploying the application"
+                }
+            }
         }
     }
 }
