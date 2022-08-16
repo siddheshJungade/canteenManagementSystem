@@ -5,8 +5,8 @@ pipeline {
         NEW_VERSION = '1.3.0'
     } 
     parameters {
-        choice(name: 'VERSION',choice:['1','2','3'],descpration: "")
-        booleanParm(name: 'executeTests',defaultValue: true, descpration: "")
+        choice(name: 'VERSION',choice:['1','2','3'],description: "")
+        booleanParm(name: 'executeTests',defaultValue: true, description: "")
     }
     stages {
         stage("build") {
