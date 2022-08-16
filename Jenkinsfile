@@ -8,10 +8,10 @@ pipeline {
         booleanParam(name: 'executeTests',defaultValue: true, description: "")
     }
     stages {
-        stage("init") {
+        stage('init') {
             steps {
                 script {
-                    gv = load "script,groovy"
+                    gv = load "script.groovy"
                 }
             }
         }
