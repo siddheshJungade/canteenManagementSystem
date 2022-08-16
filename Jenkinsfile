@@ -18,7 +18,7 @@ pipeline {
     }
 
     stage("test") {
-        whem {
+        when {
             expression {
                 params.executeTests == true
             }
