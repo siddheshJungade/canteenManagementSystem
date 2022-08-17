@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 @Library('shared-groovy-lib');
+def gv
 
 pipeline {
     agent any
