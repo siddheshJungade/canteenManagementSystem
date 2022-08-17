@@ -1,6 +1,5 @@
 #!/usr/bin/env groovy
 @Library('shared-groovy-lib')
-def gv
 
 pipeline {
     agent any
@@ -10,11 +9,6 @@ pipeline {
     }
 
     stages {
-        stage('init'){
-            steps {
-                gv = load "script.groovy"
-            }
-        }
         stage("build jar") {
             steps {
                 script{
