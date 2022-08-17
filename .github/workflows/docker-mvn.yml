@@ -1,21 +1,21 @@
-name: Docker Images CLI
+# name: Docker Images CLI
 
-on:
-  push:
-    branches: ["master"]
+# on:
+#   push:
+#     branches: ["master"]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
   
-    - name: Check out code com
-      uses: mr-smithers-excellent/docker-build-push@v5
-      with:
-        image: siddheshjungade/demojava-app
-        tags: v1, latest
-        registry: docker.io
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+#     - name: Check out code com
+#       uses: mr-smithers-excellent/docker-build-push@v5
+#       with:
+#         image: siddheshjungade/demojava-app
+#         tags: v1, latest
+#         registry: docker.io
+#         username: ${{ secrets.DOCKERHUB_USERNAME }}
+#         password: ${{ secrets.DOCKER_PASSWORD }}
    

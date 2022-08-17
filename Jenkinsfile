@@ -1,6 +1,7 @@
+#!/usr/bin/env groovy
+@Library('groovy')
 def gv
 
-@Liblary('groovy')
 pipeline {
     agent any
 
