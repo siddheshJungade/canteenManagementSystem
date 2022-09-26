@@ -45,8 +45,21 @@ The skeletal application contains a simple screen with list of food items (Menu)
   * Entering the "Vendor Admin Login” button in the Home screen will take to the Food Vendor login. 
 
 
-What I learn... 
+### What I learn... 
 - Java mvc pattern
 - mvn package manaager
 - JDBC driver 
 - Mysql DataBase
+
+
+## local Env setup 
+clone repo..
+make sure java and mysql-database is install on your system 
+
+```
+cd canteenMnagementSystem
+mvn install 
+mvn package
+java -cp target/canteen-management-system.jar com.hexaware.App
+```
+
